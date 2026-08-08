@@ -2,41 +2,16 @@
 
 # 📰 Fake News Detection using Machine Learning
 
-**A machine learning-powered web app that classifies news articles as Real or Fake using NLP and Logistic Regression.**
+**A machine learning-based web application that detects whether a news article is Real or Fake using NLP techniques such as text cleaning, lowercasing, punctuation removal, stopword removal, and tokenization. The processed text is converted into numerical features using TF-IDF vectorization and classified using a Logistic Regression model. The app also includes an Explainable AI module that shows which words influenced each prediction.**
 
 ![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
 ![Scikit Learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![NLTK](https://img.shields.io/badge/NLTK-154F5B?style=for-the-badge)
-![License](https://img.shields.io/badge/License-Educational-lightgrey?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
+
 
 <br/>
 
-<!-- Add a banner image or GIF here, e.g. screenshots/banner.png -->
-<img src="screenshots/banner.png" alt="Fake News Detection banner" width="800"/>
-
-</div>
-
----
-
-## 📑 Table of Contents
-
-- [Overview](#-project-overview)
-- [Features](#-features)
-- [Demo](#-demo)
-- [Architecture](#-project-architecture)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [Dataset](#-dataset)
-- [Installation](#️-installation)
-- [Usage](#️-run-application)
-- [ML Workflow](#-machine-learning-workflow)
-- [Model Performance](#-model-performance)
-- [Screenshots](#-screenshots)
-- [Future Enhancements](#-future-enhancements)
-- [Author](#-author)
-- [License](#-license)
 
 ---
 
@@ -59,19 +34,6 @@ This project classifies news articles as Real or Fake using TF-IDF Vectorization
 - TF-IDF Vectorization
 - Logistic Regression model
 - User-friendly Streamlit interface
-
----
-
-## 🎥 Demo
-
-<div align="center">
-
-<!-- Replace with an actual recording — record your Streamlit app with ScreenToGif / Kap / Peek and drop it in screenshots/ -->
-<img src="screenshots/demo.gif" alt="App demo" width="800"/>
-
-*A short walkthrough: paste or search a news article → get an instant Real/Fake prediction with confidence score.*
-
-</div>
 
 ---
 
@@ -149,7 +111,7 @@ The dataset contains news articles labeled as:
 | 🟥 `0` | Fake News |
 | 🟩 `1` | Real News |
 
-<sub>Dataset sourced from [Kaggle Fake and Real News Dataset](https://www.kaggle.com/) — update this link with your actual source.</sub>
+<sub>Dataset sourced from [Kaggle Fake and Real News Dataset](https://www.kaggle.com/) — (https://www.kaggle.com/datasets/hurualqayeva/news-dataset).</sub>
 
 ---
 
@@ -212,52 +174,19 @@ streamlit run app.py
 
 ## 📸 Screenshots
 
-<div align="center">
+**Home Screen**
 
-| Home Screen | Prediction Result |
-|---|---|
-| <img src="screenshots/home.png" width="380"/> | <img src="screenshots/prediction.png" width="380"/> |
+<img width="1920" height="796" alt="Screenshot 2026-08-07 230054" src="https://github.com/user-attachments/assets/b58dd00d-b8b8-45fc-9589-e9e2c1e43211" />
 
-</div>
+**Prediction Result**
 
-> Save your screenshots into a `screenshots/` folder in the repo root with the filenames above — GitHub will render them automatically.
+<img width="1920" height="760" alt="Screenshot 2026-08-07 230109" src="https://github.com/user-attachments/assets/3d92b986-8a46-43ac-baca-21917bcd4b75" />
 
----
+**Explainable AI — Word Contribution**
 
-## 🔮 Future Enhancements
-
-- Deep Learning models (LSTM/RNN)
-- BERT Transformer-based classification
-- News URL detection (auto-scrape and classify)
-- Explainable AI (SHAP / LIME integration)
-- Live News API integration
-- Model comparison dashboard
+<img width="1920" height="863" alt="Screenshot 2026-08-07 230128" src="https://github.com/user-attachments/assets/10d8277a-7849-41a2-909d-14a31bf3267b" />
 
 ---
-
-## 👩‍💻 Author
-
-<div align="center">
-
-**K. Sunidhi Sai**
-B.Tech CSE Student · SAP Certified ABAP Cloud Developer · AI & Machine Learning Enthusiast
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/your-profile)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yourusername)
-
-</div>
-
----
-
-## ⭐ Support
-
-If you found this project useful, consider giving it a ⭐ on GitHub — it helps a lot and supports future work!
-
----
-
-## 📄 License
-
-This project is created for educational and learning purposes.
 
 <div align="center">
 
