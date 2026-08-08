@@ -1,4 +1,3 @@
-<div align="center">
 
 # 📰 Fake News Detection using Machine Learning
 
@@ -153,22 +152,6 @@ streamlit run app.py
 7. Save model
 8. Predict on new news input
 
----
-
-## 📈 Model Performance
-
-<div align="center">
-
-| Metric | Score |
-|---|:---:|
-| Accuracy | `xx%` |
-| Precision | `xx%` |
-| Recall | `xx%` |
-| F1-Score | `xx%` |
-
-*(Replace with your actual evaluation metrics from `train.py`)*
-
-</div>
 
 ---
 
