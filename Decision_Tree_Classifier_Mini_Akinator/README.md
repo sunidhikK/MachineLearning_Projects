@@ -221,21 +221,21 @@ The result is a decision tree that's driven interactively instead of all at once
 
 **Question in Progress**
 
-*(<img width="1842" height="866" alt="Screenshot 2026-08-21 173615" src="https://github.com/user-attachments/assets/3fe6f956-9ea1-40c5-ac77-d2c43f6f966d" />
-)*
+*<img width="1842" height="866" alt="Screenshot 2026-08-21 173615" src="https://github.com/user-attachments/assets/3fe6f956-9ea1-40c5-ac77-d2c43f6f966d" />
+*
 
 **Final Guess**
 
-*(<img width="1766" height="877" alt="Screenshot 2026-08-21 173756" src="https://github.com/user-attachments/assets/24404066-21ce-4faa-bacd-8338b9ba3e73" />
-)*
+*<img width="1766" height="877" alt="Screenshot 2026-08-21 173756" src="https://github.com/user-attachments/assets/24404066-21ce-4faa-bacd-8338b9ba3e73" />
+*
 
 **Guessed Ans**
-*(<img width="1837" height="850" alt="Screenshot 2026-08-21 173857" src="https://github.com/user-attachments/assets/6a68054c-8be4-4660-b690-ff5f80991f9b" />
-)*
+*<img width="1837" height="850" alt="Screenshot 2026-08-21 173857" src="https://github.com/user-attachments/assets/6a68054c-8be4-4660-b690-ff5f80991f9b" />
+*
 
 **Aligning with the dataset**
-*(<img width="1351" height="407" alt="Screenshot 2026-08-21 174130" src="https://github.com/user-attachments/assets/858401ed-0645-41a4-8d9b-4f9bfaeaeb72" />
-)*
+*<img width="1351" height="407" alt="Screenshot 2026-08-21 174130" src="https://github.com/user-attachments/assets/858401ed-0645-41a4-8d9b-4f9bfaeaeb72" />
+*
 
 
 ---
