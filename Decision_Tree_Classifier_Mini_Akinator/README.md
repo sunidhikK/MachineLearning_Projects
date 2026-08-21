@@ -1,6 +1,6 @@
 # 🧞 Mini-Akinator — Guess the Character using a Decision Tree
 
-**A machine learning-powered guessing game inspired by the classic Akinator — think of a character, answer a handful of Yes/No questions, and watch a trained Decision Tree narrow down exactly who you're thinking of. Instead of hardcoding a decision flow by hand, the game trains a `DecisionTreeClassifier` on a dataset of characters and their traits, then walks that tree live — one answer at a time — asking whichever question best splits the remaining possibilities, tracking a confidence score and progress bar as it goes, and gracefully recovering if it guesses wrong.**
+**A machine learning-powered guessing game inspired by Akinator. It uses a trained Decision Tree Classifier to ask Yes/No questions, narrow down possible characters, and predict the character you're thinking of based on their traits..**
 
 ![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
@@ -215,27 +215,26 @@ The result is a decision tree that's driven interactively instead of all at once
 
 **Home Screen**
 
-*(<img width="1842" height="862" alt="Screenshot 2026-08-21 173314" src="https://github.com/user-attachments/assets/2b0abeb6-c0cf-4a57-8812-f6b38b628519" />
+<img width="1842" height="862" alt="Screenshot 2026-08-21 173314" src="https://github.com/user-attachments/assets/2b0abeb6-c0cf-4a57-8812-f6b38b628519" />
 
-)*
 
 **Question in Progress**
 
-*<img width="1842" height="866" alt="Screenshot 2026-08-21 173615" src="https://github.com/user-attachments/assets/3fe6f956-9ea1-40c5-ac77-d2c43f6f966d" />
-*
+<img width="1842" height="866" alt="Screenshot 2026-08-21 173615" src="https://github.com/user-attachments/assets/3fe6f956-9ea1-40c5-ac77-d2c43f6f966d" />
+
 
 **Final Guess**
 
-*<img width="1766" height="877" alt="Screenshot 2026-08-21 173756" src="https://github.com/user-attachments/assets/24404066-21ce-4faa-bacd-8338b9ba3e73" />
-*
+<img width="1766" height="877" alt="Screenshot 2026-08-21 173756" src="https://github.com/user-attachments/assets/24404066-21ce-4faa-bacd-8338b9ba3e73" />
+
 
 **Guessed Ans**
-*<img width="1837" height="850" alt="Screenshot 2026-08-21 173857" src="https://github.com/user-attachments/assets/6a68054c-8be4-4660-b690-ff5f80991f9b" />
-*
+<img width="1837" height="850" alt="Screenshot 2026-08-21 173857" src="https://github.com/user-attachments/assets/6a68054c-8be4-4660-b690-ff5f80991f9b" />
+
 
 **Aligning with the dataset**
-*<img width="1351" height="407" alt="Screenshot 2026-08-21 174130" src="https://github.com/user-attachments/assets/858401ed-0645-41a4-8d9b-4f9bfaeaeb72" />
-*
+<img width="1351" height="407" alt="Screenshot 2026-08-21 174130" src="https://github.com/user-attachments/assets/858401ed-0645-41a4-8d9b-4f9bfaeaeb72" />
+
 
 
 ---
