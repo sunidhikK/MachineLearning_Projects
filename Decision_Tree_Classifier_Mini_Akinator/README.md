@@ -31,14 +31,15 @@ Each player gets their own session (tracked by a UUID), so the game can support 
 
 ## 🚀 Features
 
-- **Adaptive questioning** — the order of questions isn't scripted; it's whatever the trained tree decided was most discriminating for the remaining set of characters
-- **Live confidence + progress** — every response includes a confidence score (how "sure" the current node's majority vote is) and a rough progress percentage based on how deep into the tree you are relative to its max depth
-- **Wrong-guess recovery** — if the final guess is wrong, the game excludes that character and restarts from the root instead of just admitting defeat
-- **Stateful, multi-player sessions** — each game gets a unique `session_id`, so the backend can track many simultaneous games in memory without them interfering
-- **Human-readable questions** — raw feature names like `WicketKeeper` are mapped to full questions ("Is your player a wicketkeeper?") via a template dictionary, so the game never leaks column names to the player
-- **Health/debug endpoint** — a `/health` route exposes how many characters the model knows and its training accuracy, handy for sanity-checking after retraining
-- **Animated, genie-themed frontend** — a lightweight HTML/CSS/JS UI (no framework, no build step) that talks to the FastAPI backend over plain REST calls
-- **Fully retrainable** — swap in a bigger dataset with more characters and trait columns, rerun `train.py`, and the game instantly knows a whole new set of characters with zero code changes to the tree-walking logic
+* **Adaptive Questions** — Decision Tree selects the best questions dynamically.
+* **Confidence + Progress** — Shows prediction confidence and game progress.
+* **Wrong-Guess Recovery** — Excludes wrong guesses and tries again.
+* **Multi-Player Sessions** — Each game has a unique session ID.
+* **Human-Readable Questions** — Converts feature names into natural questions.
+* **Health Endpoint** — Shows model accuracy and character count.
+* **Animated Frontend** — Simple HTML/CSS/JS genie-themed interface.
+* **Fully Retrainable** — Add characters and retrain without changing the game logic.
+
 
 ---
 
@@ -217,30 +218,25 @@ The result is a decision tree that's driven interactively instead of all at once
 
 <img width="1842" height="862" alt="Screenshot 2026-08-21 173314" src="https://github.com/user-attachments/assets/2b0abeb6-c0cf-4a57-8812-f6b38b628519" />
 
-
 **Question in Progress**
 
 <img width="1842" height="866" alt="Screenshot 2026-08-21 173615" src="https://github.com/user-attachments/assets/3fe6f956-9ea1-40c5-ac77-d2c43f6f966d" />
-
 
 **Final Guess**
 
 <img width="1766" height="877" alt="Screenshot 2026-08-21 173756" src="https://github.com/user-attachments/assets/24404066-21ce-4faa-bacd-8338b9ba3e73" />
 
-
 **Guessed Ans**
+
 <img width="1837" height="850" alt="Screenshot 2026-08-21 173857" src="https://github.com/user-attachments/assets/6a68054c-8be4-4660-b690-ff5f80991f9b" />
 
 
 **Aligning with the dataset**
+
 <img width="1351" height="407" alt="Screenshot 2026-08-21 174130" src="https://github.com/user-attachments/assets/858401ed-0645-41a4-8d9b-4f9bfaeaeb72" />
 
 
 
 ---
 
-<div align="center">
 
-<sub>Built with 🧠 and ☕ by K. Sunidhi Sai</sub>
-
-</div>
