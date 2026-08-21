@@ -1,4 +1,4 @@
-# 🧞 Mini-Akinator — Guess the Character using a Decision Tree
+# 🧞 Mini-Akinator 
 
 **A machine learning-powered guessing game inspired by Akinator. It uses a trained Decision Tree Classifier to ask Yes/No questions, narrow down possible characters, and predict the character you're thinking of based on their traits.**
 
