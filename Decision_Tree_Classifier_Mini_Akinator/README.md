@@ -1,6 +1,6 @@
 # 🧞 Mini-Akinator — Guess the Character using a Decision Tree
 
-**A machine learning-powered guessing game inspired by Akinator. It uses a trained Decision Tree Classifier to ask Yes/No questions, narrow down possible characters, and predict the character you're thinking of based on their traits..**
+**A machine learning-powered guessing game inspired by Akinator. It uses a trained Decision Tree Classifier to ask Yes/No questions, narrow down possible characters, and predict the character you're thinking of based on their traits.**
 
 ![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
@@ -8,7 +8,9 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 
 <br/>
+
 ---
+
 ## 📖 Project Overview
 
 The classic Akinator game feels almost magical — a handful of questions and it somehow knows exactly who's in your head. Under the hood, though, that "magic" is really just a decision tree: a structure that repeatedly splits a set of candidates in half based on the most informative yes/no question available at each step.
@@ -29,14 +31,15 @@ Each player gets their own session (tracked by a UUID), so the game can support 
 
 ## 🚀 Features
 
-* **Adaptive Questions** — Decision Tree selects the best questions dynamically.
-* **Confidence + Progress** — Shows prediction confidence and game progress.
-* **Wrong-Guess Recovery** — Excludes wrong guesses and tries again.
-* **Multi-Player Sessions** — Each game has a unique session ID.
-* **Human-Readable Questions** — Converts feature names into natural questions.
-* **Health Endpoint** — Shows model accuracy and character count.
-* **Animated Frontend** — Simple HTML/CSS/JS genie-themed interface.
-* **Fully Retrainable** — Add characters and retrain without changing the game logic.
+- **Adaptive Questions** — Decision Tree selects the best questions dynamically
+- **Confidence + Progress** — Shows prediction confidence and game progress
+- **Wrong-Guess Recovery** — Excludes wrong guesses and tries again
+- **Multi-Player Sessions** — Each game has a unique session ID
+- **Human-Readable Questions** — Converts feature names into natural questions
+- **Health Endpoint** — Shows model accuracy and character count
+- **Animated Frontend** — Simple HTML/CSS/JS genie-themed interface
+- **Fully Retrainable** — Add characters and retrain without changing the game logic
+
 ---
 
 ## 🏗 Project Architecture
@@ -65,6 +68,7 @@ No  (0) → Go to LEFT child
     │
     ▼
 (loop back to "Is Current Node a Leaf?")
+```
 
 ---
 
@@ -145,6 +149,8 @@ cd MachineLearning_Projects/Mini-Akinator
 pip install -r backend/requirements.txt
 ```
 
+---
+
 ## ▶️ Run Application
 
 **1. (Re)train the model** — do this once, and again any time the dataset changes:
@@ -197,13 +203,14 @@ Open `frontend/index.html` directly in your browser — it's a static page that 
 
 <img width="1837" height="850" alt="Screenshot 2026-08-21 173857" src="https://github.com/user-attachments/assets/6a68054c-8be4-4660-b690-ff5f80991f9b" />
 
-
 **Aligning with the dataset**
 
 <img width="1351" height="407" alt="Screenshot 2026-08-21 174130" src="https://github.com/user-attachments/assets/858401ed-0645-41a4-8d9b-4f9bfaeaeb72" />
 
-
-
 ---
 
+<div align="center">
 
+<sub>Built with 🧠 and ☕ by K. Sunidhi Sai</sub>
+
+</div>
