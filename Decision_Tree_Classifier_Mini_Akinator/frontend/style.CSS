@@ -1,0 +1,572 @@
+/* =========================================================
+   MINI AKINATOR — light "oracle sky" theme
+   Palette: bright sky blue gradient with floating diamond
+   motes, a warm gold accent for the genie's turban / logo,
+   and a friendly original genie mascot (not a copy of any
+   trademarked character art).
+   Type: Baloo 2 (rounded, playful display) for the wordmark
+   and headings, Nunito (warm geometric sans) for everything
+   the player reads/does.
+   ========================================================= */
+
+:root {
+    --sky-top: #bfe3fb;
+    --sky-mid: #d9edfc;
+    --sky-bottom: #f3f9fe;
+    --blue-deep: #1f6fb2;
+    --blue-mid: #2aa9d8;
+    --robe: #2b8fc4;
+    --robe-deep: #1c6a96;
+    --gold: #f4b93e;
+    --gold-deep: #c6841a;
+    --ink: #163a5c;
+    --ink-soft: #4c6f8f;
+    --ink-faint: #85a2bc;
+    --white: #ffffff;
+    --success: #2fb886;
+    --danger: #e8604a;
+    --card-border: rgba(31, 111, 178, 0.16);
+
+    --font-display: 'Baloo 2', 'Segoe UI', sans-serif;
+    --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 45%, var(--sky-bottom) 100%);
+    color: var(--ink);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+}
+
+/* ---------- floating diamond motes ---------- */
+.stars {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.diamond {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: rgba(255, 255, 255, 0.85);
+    transform: rotate(45deg);
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    animation: diamond-float 5s ease-in-out infinite;
+}
+
+@keyframes diamond-float {
+
+    0%,
+    100% {
+        transform: rotate(45deg) translateY(0);
+        opacity: .6;
+    }
+
+    50% {
+        transform: rotate(45deg) translateY(-14px);
+        opacity: 1;
+    }
+}
+
+/* ---------- stage / layout ---------- */
+.stage {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px 48px;
+    text-align: center;
+}
+
+.screen {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 560px;
+    animation: rise .5s cubic-bezier(.2, .8, .2, 1);
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   SIGNATURE ELEMENT — the genie mascot
+   Original illustrated character: cream turban with a gold
+   band and a red flame gem, a friendly face, and a blue
+   robe that tapers into a wisp of smoke, arms crossed.
+   State classes (thinking / excited / correct / wrong)
+   change the mouth shape and add a colored glow.
+   ========================================================= */
+.genie {
+    position: relative;
+    width: 190px;
+    height: 210px;
+    margin: 0 auto 4px;
+    flex-shrink: 0;
+    animation: genie-bob 3.6s ease-in-out infinite;
+}
+
+@keyframes genie-bob {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.genie-glow {
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(244, 185, 62, 0.35) 0%, transparent 70%);
+    filter: blur(4px);
+    animation: aura-pulse 3.2s ease-in-out infinite;
+    transition: background .4s ease;
+}
+
+@keyframes aura-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: .6;
+    }
+
+    50% {
+        transform: scale(1.12);
+        opacity: 1;
+    }
+}
+
+.genie svg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.genie .mouth-neutral {
+    display: block;
+}
+
+.genie .mouth-happy,
+.genie .mouth-frown {
+    display: none;
+}
+
+.genie.correct .genie-glow {
+    background: radial-gradient(circle, rgba(47, 184, 134, 0.4) 0%, transparent 70%);
+}
+
+.genie.correct .mouth-neutral {
+    display: none;
+}
+
+.genie.correct .mouth-happy {
+    display: block;
+}
+
+.genie.wrong .genie-glow {
+    background: radial-gradient(circle, rgba(232, 96, 74, 0.4) 0%, transparent 70%);
+}
+
+.genie.wrong .mouth-neutral {
+    display: none;
+}
+
+.genie.wrong .mouth-frown {
+    display: block;
+}
+
+.genie.thinking {
+    animation-duration: 1.6s;
+}
+
+.genie.excited .genie-glow {
+    background: radial-gradient(circle, rgba(244, 185, 62, 0.5) 0%, transparent 70%);
+}
+
+/* =========================================================
+   Typography & copy blocks
+   ========================================================= */
+.eyebrow {
+    margin: 4px 0 6px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+.glow-text {
+    color: var(--gold-deep);
+}
+
+.title {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 9vw, 60px);
+    font-weight: 800;
+    letter-spacing: .02em;
+    margin: 4px 0 14px;
+    color: var(--gold-deep);
+    -webkit-text-stroke: 1.5px var(--gold);
+    text-shadow:
+        0 2px 0 var(--gold),
+        0 4px 10px rgba(198, 132, 26, 0.35);
+}
+
+.title-sm {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(22px, 5vw, 30px);
+    margin: 6px 0 18px;
+    color: var(--ink);
+}
+
+.subtitle {
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.55;
+    max-width: 380px;
+    margin: 0 auto 28px;
+}
+
+.hint {
+    margin-top: 18px;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+}
+
+/* ---------- buttons ---------- */
+.btn {
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 800;
+    font-family: var(--font-body);
+    transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.btn:active {
+    transform: translateY(1px) scale(.98);
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--blue-deep);
+    outline-offset: 3px;
+}
+
+.btn-primary {
+    padding: 15px 40px;
+    font-size: 16px;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--blue-mid), var(--blue-deep));
+    box-shadow: 0 8px 20px rgba(31, 111, 178, 0.35);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.06);
+    box-shadow: 0 10px 26px rgba(31, 111, 178, 0.45);
+}
+
+.btn-glow {
+    animation: btn-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes btn-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 8px 20px rgba(31, 111, 178, 0.35);
+    }
+
+    50% {
+        box-shadow: 0 8px 30px rgba(31, 111, 178, 0.55);
+    }
+}
+
+.btn-secondary {
+    padding: 15px 34px;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--blue-deep);
+    background: var(--white);
+    border: 1.5px solid var(--card-border);
+}
+
+.btn-secondary:hover {
+    background: var(--sky-mid);
+}
+
+.answer-row {
+    display: flex;
+    gap: 16px;
+    margin: 6px 0 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-answer {
+    padding: 14px 38px;
+    font-size: 15.5px;
+    min-width: 120px;
+}
+
+.btn-yes {
+    color: var(--white);
+    background: linear-gradient(135deg, #4ecfa0, var(--success));
+    box-shadow: 0 6px 16px rgba(47, 184, 134, 0.35);
+}
+
+.btn-yes:hover {
+    filter: brightness(1.06);
+}
+
+.btn-no {
+    color: var(--white);
+    background: linear-gradient(135deg, #f18268, var(--danger));
+    box-shadow: 0 6px 16px rgba(232, 96, 74, 0.35);
+}
+
+.btn-no:hover {
+    filter: brightness(1.06);
+}
+
+/* =========================================================
+   Question screen — "speech bubble" card
+   ========================================================= */
+.speech-bubble {
+    position: relative;
+    margin: 6px 0 18px;
+    padding: 10px 20px;
+    background: var(--white);
+    border: 1.5px solid var(--card-border);
+    border-radius: 14px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--blue-deep);
+    box-shadow: 0 4px 14px rgba(31, 111, 178, 0.12);
+}
+
+.question-text {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(20px, 4.4vw, 27px);
+    line-height: 1.4;
+    max-width: 460px;
+    margin: 0 0 26px;
+    color: var(--ink);
+    background: var(--white);
+    border: 1.5px solid var(--card-border);
+    border-radius: 20px;
+    padding: 22px 28px;
+    box-shadow: 0 8px 24px rgba(31, 111, 178, 0.12);
+}
+
+.progress-wrap {
+    width: 100%;
+    max-width: 320px;
+    margin-top: 6px;
+}
+
+.progress-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    letter-spacing: .04em;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(31, 111, 178, 0.12);
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--blue-mid), var(--gold));
+    transition: width .5s cubic-bezier(.2, .8, .2, 1);
+}
+
+/* =========================================================
+   Thinking overlay
+   ========================================================= */
+.thinking-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(191, 227, 251, .82);
+    backdrop-filter: blur(3px);
+    color: var(--blue-deep);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.thinking-overlay.active {
+    display: flex;
+}
+
+.thinking-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.thinking-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: dot-bounce 1s ease-in-out infinite;
+}
+
+.thinking-dots span:nth-child(2) {
+    animation-delay: .15s;
+}
+
+.thinking-dots span:nth-child(3) {
+    animation-delay: .3s;
+}
+
+@keyframes dot-bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: translateY(0);
+        opacity: .5;
+    }
+
+    40% {
+        transform: translateY(-10px);
+        opacity: 1;
+    }
+}
+
+/* =========================================================
+   Guess / correct / wrong / stumped screens
+   ========================================================= */
+.guess-name {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 7vw, 42px);
+    font-weight: 800;
+    margin: 6px 0 4px;
+    color: var(--gold-deep);
+}
+
+.guess-confidence {
+    color: var(--ink-soft);
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 0 26px;
+}
+
+.screen.correct {
+    position: relative;
+}
+
+.confetti-layer {
+    position: absolute;
+    inset: -40px -20px auto -20px;
+    height: 260px;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -10px;
+    width: 8px;
+    height: 14px;
+    opacity: .95;
+    animation: confetti-fall 2.4s ease-in forwards;
+}
+
+@keyframes confetti-fall {
+    to {
+        transform: translateY(280px) rotate(540deg);
+        opacity: 0;
+    }
+}
+
+/* =========================================================
+   Misc
+   ========================================================= */
+.api-status {
+    position: fixed;
+    bottom: 10px;
+    right: 14px;
+    font-size: 11px;
+    color: var(--ink-faint);
+    z-index: 2;
+}
+
+@media (max-width: 420px) {
+    .genie {
+        width: 150px;
+        height: 168px;
+    }
+
+    .btn-answer {
+        min-width: 100px;
+        padding: 13px 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
