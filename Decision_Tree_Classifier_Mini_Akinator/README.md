@@ -8,9 +8,7 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 
 <br/>
-
 ---
-
 ## 📖 Project Overview
 
 The classic Akinator game feels almost magical — a handful of questions and it somehow knows exactly who's in your head. Under the hood, though, that "magic" is really just a decision tree: a structure that repeatedly splits a set of candidates in half based on the most informative yes/no question available at each step.
@@ -39,8 +37,6 @@ Each player gets their own session (tracked by a UUID), so the game can support 
 * **Health Endpoint** — Shows model accuracy and character count.
 * **Animated Frontend** — Simple HTML/CSS/JS genie-themed interface.
 * **Fully Retrainable** — Add characters and retrain without changing the game logic.
-
-
 ---
 
 ## 🏗 Project Architecture
@@ -69,9 +65,6 @@ No  (0) → Go to LEFT child
     │
     ▼
 (loop back to "Is Current Node a Leaf?")
-```
-
-The key design decision here is that the *game logic* (tree-walking, sessions, excluded characters) lives entirely in the backend, separate from the *model logic* (the trained sklearn tree). `model_utils.py` only knows how to answer "what feature is at this node" and "what's the majority guess here" — the actual game rules (session tracking, exclusion on wrong guesses, progress calculation) sit in `GameSession`, which wraps the model instead of being baked into it.
 
 ---
 
@@ -133,13 +126,6 @@ The dataset (`data/mini_akinator_dataset.csv`) is deliberately simple: one row p
 | `WicketKeeper` | Whether the player is a wicketkeeper |
 | `IsCurrentCaptain` | Whether the player currently captains their team |
 
-A few things worth knowing about how the dataset is actually used:
-
-- **Every row must be uniquely identifiable by its traits.** `train.py` trains on the *entire* dataset (no train/test split — see the note below) and expects 100% training accuracy. If two characters share an identical trait signature, the tree can't tell them apart and `train.py` will print a warning listing exactly which characters are ambiguous, so you know which trait columns need to be added.
-- **No train/test split, on purpose.** This isn't a model meant to generalize to characters it's never seen — it's closer to a lookup table disguised as a classifier. Splitting the data would just mean the tree "forgets" some characters, and with small datasets sklearn's stratified split can't even run when a class has only one row.
-- **Adding a trait is a one-line change.** Add a new `0/1` column to the CSV, give it a friendlier phrasing in `model_utils.py`'s `QUESTION_TEMPLATES` dict (otherwise it falls back to a generic `"Is your character '<TraitName>'?"`), and rerun `train.py`. No other code needs to change — the tree-walking logic reads feature names dynamically.
-- **Swapping themes entirely is just as easy.** Nothing about the code is cricket-specific; replace the CSV with, say, Marvel characters and matching traits (`Superhero`, `HasPowers`, `FromEarth`...) and the same pipeline trains a completely different game.
-
 ---
 
 ## ⚙️ Installation
@@ -158,8 +144,6 @@ cd MachineLearning_Projects/Mini-Akinator
 ```bash
 pip install -r backend/requirements.txt
 ```
-
----
 
 ## ▶️ Run Application
 
@@ -182,21 +166,6 @@ Open `frontend/index.html` directly in your browser — it's a static page that 
 
 ---
 
-## 🧠 How the Tree-Walking Actually Works
-
-This is the part that makes the project more than "train a model, call `.predict()`" — worth spelling out because it's the core trick:
-
-1. **Training** (`train.py`) fits a standard `DecisionTreeClassifier` on the full dataset and saves it with Joblib, alongside metadata (feature names, the sorted character list, and training accuracy).
-2. **Loading** (`model_utils.AkinatorModel`) reaches into sklearn's internal `tree_` structure directly — the arrays `tree_.feature`, `tree_.children_left`, `tree_.children_right`, and `tree_.value` — rather than treating the model as a black box you only call `.predict()` on.
-3. **Reading a node**: `tree_.feature[node_id]` gives the index of the trait that node splits on (or `-2` if it's a leaf). That index is mapped back to a human name and passed through `QUESTION_TEMPLATES` to produce the actual question text shown to the player.
-4. **Advancing**: because sklearn splits binary (0/1) features at the threshold 0.5, a **Yes** answer (1) always means "go right" (`X > 0.5`) and a **No** answer (0) always means "go left" (`X <= 0.5`). `next_child()` encodes exactly that rule.
-5. **Guessing at a leaf**: `tree_.value[node_id]` holds the class distribution of training examples that landed at that node. The majority class is the guess; dividing its count by the total gives the confidence score returned to the frontend.
-6. **Recovering from a wrong guess**: `GameSession.reject_current_guess()` adds the guessed character to an `excluded_characters` set and resets `node_id` back to the root — since the tree has no way to "resume" past a leaf, restarting the walk (now silently avoiding the excluded character once it's reached again) is the simplest correct fix.
-
-The result is a decision tree that's driven interactively instead of all at once — the classic ML training/inference split, just with the inference step spread out over several HTTP requests instead of one.
-
----
-
 ## 🌐 API Endpoints
 
 | Endpoint | Method | Description |
@@ -209,8 +178,6 @@ The result is a decision tree that's driven interactively instead of all at once
 | `/health` | GET | Returns `{ status, characters, accuracy }` — a quick way to confirm the model loaded correctly after a retrain |
 
 ---
-
-
 
 ## 📸 Screenshots
 
